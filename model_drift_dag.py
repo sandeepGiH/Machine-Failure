@@ -56,7 +56,7 @@ def retrain_model():
 
     print("Model retrained.")
 
-    with open("C:/Users/91818/Desktop/Machine Failure/newmodel.pkl", "wb") as f:
+    with open("newmodel.pkl", "wb") as f:
         pickle.dump(classifier, f)
 
 def no_retrain_model():
