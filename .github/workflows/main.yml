@@ -23,6 +23,11 @@ jobs:
           pip install apache-airflow
           pip install scikit-learn evidently pandas  # If you have any additional dependencies
 
+      - name: Initialize Airflow Database
+        run: |
+          airflow db init
+
+
       - name: Run Airflow DAG
         run: |
           airflow dags trigger --conf '{"key":"value"}' conditional_model_drift_detection_dag
