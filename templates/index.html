@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            max-width: 200px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: red;
+            font-size: 32px;
+            margin-top: 0;
+        }
+
+        .upload-label {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .upload-input {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            border: 2px dashed #ccc;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 16px;
+            color: #555;
+            cursor: pointer;
+        }
+
+        .upload-input:hover {
+            border-color: #aaa;
+        }
+
+        .upload-input:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://innodatatics.ai/assets/innologo.png" alt="Organization Logo" class="logo">
+        <h2>Machine Failure Prediction</h2>
+    <form action="/success" method="POST" enctype="multipart/form-data">
+        <label class="upload-label">Select a file to upload:</label>
+        <input type="file" class="upload-input" id="fileInput" name="file">
+        <button type="submit" class="upload-input">Submit</button>
+    </form>
+    
+    </div>
+</body>
+</html>
+
