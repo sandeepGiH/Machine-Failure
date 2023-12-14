@@ -2,7 +2,7 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator, BranchPythonOperator
 from datetime import datetime, timedelta
 import pickle
-from airflow.hooks.postgres_hook import PostgresHook
+#from airflow.hooks.postgres_hook import PostgresHook
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
@@ -15,7 +15,7 @@ from evidently.metrics.base_metric import generate_column_metrics
 from evidently.metric_preset import DataDriftPreset
 from evidently.test_suite import TestSuite
 from evidently.tests import TestColumnDrift
-from airflow.hooks.postgres_hook import PostgresHook
+#from airflow.hooks.postgres_hook import PostgresHook
 import pickle
 import joblib
 model = pickle.load(open('Naive_bayes.pkl', 'rb'))
