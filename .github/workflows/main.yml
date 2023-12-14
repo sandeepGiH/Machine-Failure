@@ -34,9 +34,9 @@ jobs:
         sleep 5
         airflow webserver &
 
-    - name: Run Airflow DAG
-      run: |
-        python model_drift_dag.py
+   # - name: Run Airflow DAG
+   #   run: |
+    #    python model_drift_dag.py
 
     - name: Tear down Airflow
       run: |
