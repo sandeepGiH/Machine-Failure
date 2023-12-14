@@ -18,9 +18,15 @@ jobs:
       with:
         python-version: 3.8
 
+    - name: Create DAGs directory
+      run: mkdir -p $GITHUB_WORKSPACE/dags/
+
+    - name: Copy DAG file
+      run: cp model_drift_dag.py $GITHUB_WORKSPACE/dags/
+
     - name: Install dependencies
       run: |
-        pip install apache-airflow==2.7.3
+        pip install apache-airflow
         pip install pandas
         pip install scikit-learn
         pip install evidently
@@ -30,15 +36,16 @@ jobs:
       run: |
         export AIRFLOW_HOME=$(pwd)
         airflow db init
-        airflow scheduler &
-        sleep 5
-        airflow webserver &
 
-   # - name: Run Airflow DAG
-   #   run: |
-    #    python model_drift_dag.py
+    - name: Run Airflow scheduler
+      run: airflow scheduler --daemon
+
+    - name: Wait for scheduler to start
+      run: sleep 10
+
+    - name: Run Airflow DAG
+      run: airflow dags trigger conditional_model_drift_detection_dag -r now
 
     - name: Tear down Airflow
       run: |
-        pkill -f "airflow webserver"
         pkill -f "airflow scheduler"
