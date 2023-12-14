@@ -47,7 +47,7 @@ jobs:
       run: sleep 10
 
     - name: Run Airflow DAG
-      run: airflow dags trigger conditional_model_drift_detection_dag -r now
+      run: airflow dags trigger model_drift_dag -r now
 
     - name: Tear down Airflow
       run: |
