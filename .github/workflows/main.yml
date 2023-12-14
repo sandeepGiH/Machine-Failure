@@ -16,13 +16,13 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.8
+        python-version: 3.9
 
     - name: Create DAGs directory
       run: mkdir -p $GITHUB_WORKSPACE/dags/
 
     - name: Copy DAG file
-      run: cp model_drift_dag.py $GITHUB_WORKSPACE/dags/
+      run: cp my_dag.py $GITHUB_WORKSPACE/dags/
 
     - name: Install dependencies
       run: |
@@ -35,21 +35,19 @@ jobs:
     - name: Set up Airflow
       run: |
         export AIRFLOW_HOME=$(pwd)
+    
+    - name: Airflow db init
+      run: |
         airflow db init
-        airflow users create --username admin --firstname Admin --lastname User --role Admin --email sandeepoffice10@gmail.com --password admin
-
-
+             
     - name: Run Airflow scheduler
-      run: 
-        airflow db init 
-        airflow scheduler
-           
+      run: airflow scheduler --daemon
 
     - name: Wait for scheduler to start
       run: sleep 10
 
     - name: Run Airflow DAG
-      run: airflow dags trigger conditional_model_drift_detection_dag -r now
+      run: airflow dags trigger model_drift_dag -r now
 
     - name: Tear down Airflow
       run: |
