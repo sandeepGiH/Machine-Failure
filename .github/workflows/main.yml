@@ -3,31 +3,29 @@ name: Airflow DAG Workflow
 on:
   push:
     branches:
-      - main  # Change this to your main branch name
+      - main  # You can change this to the branch you want to trigger the workflow
 
 jobs:
   run_airflow_dag:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8  # Change this to your Python version
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
 
-      - name: Install Dependencies
-        run: |
-          pip install apache-airflow
-          pip install scikit-learn evidently pandas  # If you have any additional dependencies
+    - name: Install dependencies
+      run: |
+        pip install apache-airflow pandas scikit-learn evidently
 
-      - name: Initialize Airflow Database
-        run: |
-          airflow db init
+    - name: Initialize Airflow database
+      run: |
+        airflow db init
 
-
-      - name: Run Airflow DAG
-        run: |
-          airflow dags trigger --conf '{"key":"value"}' conditional_model_drift_detection_dag
+    - name: Run Airflow DAG
+      run: |
+        airflow dags trigger -r conditional_model_drift_detection_dag
