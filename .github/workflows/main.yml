@@ -20,7 +20,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install apache-airflow
+        pip install apache-airflow==2.7.3
         pip install pandas
         pip install scikit-learn
         pip install evidently
