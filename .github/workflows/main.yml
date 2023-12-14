@@ -24,6 +24,7 @@ jobs:
         pip install pandas
         pip install scikit-learn
         pip install evidently
+        pip install feature_engine
 
     - name: Set up Airflow
       run: |
