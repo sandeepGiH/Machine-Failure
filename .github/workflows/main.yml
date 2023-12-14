@@ -38,7 +38,8 @@ jobs:
         airflow db init
 
     - name: Run Airflow scheduler
-      run: airflow scheduler --daemon
+      run: airflow scheduler
+           
 
     - name: Wait for scheduler to start
       run: sleep 10
