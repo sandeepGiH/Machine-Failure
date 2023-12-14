@@ -79,7 +79,7 @@ default_args = {
 }
 
 dag = DAG(
-    'conditional_model_drift_detection_dag',
+    'model_drift_dag',
     default_args=default_args,
     schedule_interval='@daily',  # Set your desired schedule interval
     catchup=False,
