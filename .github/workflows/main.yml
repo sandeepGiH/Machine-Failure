@@ -56,7 +56,7 @@ jobs:
     
     - name: Run Airflow DAG
       run: |
-        airflow dags trigger model_drift_dag -r now
+        airflow dags trigger -r now model_drift_dag 
 
     - name: Tear down Airflow
       run: |
