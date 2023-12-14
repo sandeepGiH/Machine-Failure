@@ -48,7 +48,7 @@ jobs:
 
     - name: Run Airflow scheduler
       run: |
-        airflow scheduler 
+        airflow scheduler --daemon
 
     - name: Wait for scheduler to start
       run: sleep 10
