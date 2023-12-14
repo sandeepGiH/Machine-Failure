@@ -22,7 +22,7 @@ jobs:
       run: mkdir -p $GITHUB_WORKSPACE/dags/
 
     - name: Copy DAG file
-      run: cp my_dag.py $GITHUB_WORKSPACE/dags/
+      run: cp model_drift_dag.py $GITHUB_WORKSPACE/dags/
 
     - name: Install dependencies
       run: |
@@ -47,7 +47,7 @@ jobs:
       run: sleep 10
 
     - name: Run Airflow DAG
-      run: airflow dags trigger model_drift_dag -r now
+      run: airflow dags trigger conditional_model_drift_detection_dag -r now
 
     - name: Tear down Airflow
       run: |
