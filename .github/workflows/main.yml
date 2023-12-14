@@ -35,7 +35,12 @@ jobs:
     - name: Set up Airflow
       run: |
         export AIRFLOW_HOME=$(pwd)
-        airflow db init
+
+    - name: Edit airflow.cfg
+      run: |
+        echo "[core]" >> $GITHUB_WORKSPACE/airflow.cfg
+        echo "dags_folder = $GITHUB_WORKSPACE" >> $GITHUB_WORKSPACE/airflow.cfg
+
  
     - name: Airflow db
       run: |
@@ -48,11 +53,7 @@ jobs:
     - name: Wait for scheduler to start
       run: sleep 10
 
-    - name: Edit airflow.cfg
-      run: |
-        echo "[core]" >> $GITHUB_WORKSPACE/airflow.cfg
-        echo "dags_folder = $GITHUB_WORKSPACE" >> $GITHUB_WORKSPACE/airflow.cfg
-
+    
     - name: Run Airflow DAG
       run: |
         airflow dags trigger model_drift_dag -r now
