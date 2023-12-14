@@ -40,7 +40,9 @@ jobs:
 
 
     - name: Run Airflow scheduler
-      run: airflow scheduler
+      run: 
+        airflow db init 
+        airflow scheduler
            
 
     - name: Wait for scheduler to start
