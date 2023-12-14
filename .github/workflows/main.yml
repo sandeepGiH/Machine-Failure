@@ -28,4 +28,4 @@ jobs:
 
     - name: Run Airflow DAG
       run: |
-        airflow dags trigger -r conditional_model_drift_detection_dag
+        airflow dags trigger -r "${{ github.run_id }}" conditional_model_drift_detection_dag
